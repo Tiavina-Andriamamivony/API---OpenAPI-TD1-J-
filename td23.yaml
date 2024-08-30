@@ -1,0 +1,104 @@
+openapi: 3.0.3
+info:
+  title: STD23059 - TD2
+  version: '1.0.2'
+servers:
+  - url: https://localhost.std23059.com
+paths:
+  /meal:
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: List of meal
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Meal'
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  age:
+                    type: integer
+        required: true
+      responses:
+        200:
+          description: List of created meal
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Meal'
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Meal'
+        required: true
+      responses:
+        200:
+          description: List of updated meal
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Meal'
+    delete:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/MealIdentifier'
+        required: true
+      responses:
+        200:
+          description: List of deleted meal
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Meal'
+components:
+  schemas:
+    Meal:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        age:
+          type: integer
+    MealIdentifier:
+      type: object
+      properties:
+        id:
+          type: string
